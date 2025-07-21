@@ -1,0 +1,60 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum PlantStage {
+  Veg
+  Flower
+  Harvest
+  Complete
+}
+
+model Plant {
+  id                String            @id @default(uuid())
+  name              String
+  breeder           String
+  plantCount        Int
+  dateStarted       DateTime
+  type              String
+  origin            String
+  spectrum          String
+  budDensity        String?
+  trichomeColor     String?
+  stage             PlantStage        @default(Veg)
+  vegStartDate      DateTime?
+  flowerStartDate   DateTime?
+  harvestStartDate  DateTime?
+  cureStartDate     DateTime?
+  cureEndDate       DateTime?
+  imagePaths        String[]          // PostgreSQL native array
+  waterings         WateringEntry[]   @relation("PlantWaterings")
+  defaultFertilizers FertilizerEntry[] @relation("PlantDefaultFertilizers")
+}
+
+model WateringEntry {
+  id          String           @id @default(uuid())
+  date        DateTime         @default(now())
+  ph          Float
+  ppm         Float
+  tds         Float
+  images      String[]         // array of image paths
+  plant       Plant?           @relation("PlantWaterings", fields: [plantId], references: [id])
+  plantId     String?
+  fertilizers FertilizerEntry[] @relation("WateringFertilizers") 
+}
+
+model FertilizerEntry {
+  id           String           @id @default(uuid())
+  name         String
+  npk          String
+  amount       String?
+  plant        Plant?           @relation("PlantDefaultFertilizers", fields: [plantId], references: [id])
+  plantId      String?
+  watering     WateringEntry?   @relation("WateringFertilizers", fields: [wateringId], references: [id])
+  wateringId   String?
+}

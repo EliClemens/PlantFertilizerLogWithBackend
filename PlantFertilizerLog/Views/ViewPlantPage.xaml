@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PlantFertilizerLog.Views.ViewPlantPage"
+             Title="Plant Details"
+             BackgroundColor="Black">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="15" Spacing="20">
+
+            <!-- PLANT INFO -->
+            <Frame BackgroundColor="#1A1A1A" BorderColor="Green" CornerRadius="10" Padding="10">
+                <VerticalStackLayout>
+                    <Label Text="{Binding Plant.Name}" FontSize="24" TextColor="White" FontAttributes="Bold"/>
+                    <Label Text="{Binding Plant.Breeder}" TextColor="White"/>
+                    <Label TextColor="White">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Started: " />
+                                <Span Text="{Binding Plant.DateStarted, StringFormat='{0:MMM dd, yyyy}'}" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- NUTRIENTS AND WATERING LIST -->
+            <Label Text="Watering &amp; Fertilizer Log" FontSize="20" TextColor="White"/>
+            <CollectionView ItemsSource="{Binding Plant.Waterings}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="DarkCyan" BackgroundColor="#222" Padding="10" Margin="0,5" CornerRadius="8">
+                            <VerticalStackLayout>
+                                <Label Text="{Binding Date, StringFormat='Date: {0:MMM dd, yyyy}'}" TextColor="White"/>
+                                <Label Text="{Binding PH, StringFormat='pH: {0}'}" TextColor="White"/>
+                                <Label Text="{Binding PPM, StringFormat='PPM: {0}'}" TextColor="White"/>
+                                <Label Text="{Binding TDS, StringFormat='TDS: {0}'}" TextColor="White"/>
+                                <Label Text="Fertilizers:" FontAttributes="Bold" TextColor="White"/>
+                                <CollectionView ItemsSource="{Binding Fertilizers}">
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Label Text="{Binding Name}" TextColor="LightGreen"/>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!-- IMAGE GALLERY -->
+            <Label Text="Plant Images" FontSize="20" TextColor="White"/>
+            <CollectionView ItemsSource="{Binding Plant.ImagePaths}" ItemsLayout="HorizontalList">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Image Source="{Binding .}" HeightRequest="100" WidthRequest="100" Margin="5"/>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!-- RETURN BUTTON -->
+            <Button Text="Return" Clicked="OnReturnClicked" BackgroundColor="DarkOliveGreen" TextColor="White" CornerRadius="10"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            x:Class="PlantFertilizerLog.Views.HarvestPage"
+             Title="Harvest Details"
+             BackgroundColor="Black">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <!-- PLANT INFO -->
+            <Label Text="{Binding Plant.Name}" FontSize="24" TextColor="White" FontAttributes="Bold"/>
+            <Label Text="{Binding Plant.Breeder}" TextColor="White"/>
+
+            <Label Text="{Binding Plant.CureStartDate, StringFormat='Cure Started: {0:MMM dd, yyyy}'}" TextColor="White"/>
+            <Label Text="{Binding Plant.CureEndDate, StringFormat='Cure Finished: {0:MMM dd, yyyy}'}" TextColor="White"/>
+
+            <!-- Bud Density -->
+            <Label Text="Bud Density" TextColor="White"/>
+            <Picker x:Name="BudDensityPicker" Title="Select Density">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Airy</x:String>
+                        <x:String>Medium</x:String>
+                        <x:String>Dense</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+            <!-- Trichome Color -->
+            <Label Text="Trichome Color" TextColor="White"/>
+            <Picker x:Name="TrichomePicker" Title="Select Trichome Color">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Clear</x:String>
+                        <x:String>Cloudy</x:String>
+                        <x:String>Amber</x:String>
+                        <x:String>Mixed</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+            <!-- Upload Image -->
+            <Button Text="Upload Image" Clicked="OnUploadImageClicked" />
+
+            <!-- Save Button -->
+            <Button Text="Mark as Complete"
+                    Clicked="OnSaveClicked"
+                    BackgroundColor="Green"
+                    TextColor="White"
+                    CornerRadius="10" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

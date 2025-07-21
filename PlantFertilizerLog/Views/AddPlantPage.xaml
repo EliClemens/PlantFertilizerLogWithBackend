@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PlantFertilizerLog.Views.AddPlantPage"
+             Title="Add New Plant"
+             BackgroundColor="Black">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <Label Text="Plant Name" TextColor="White"/>
+            <Entry x:Name="NameEntry" Placeholder="Enter name" />
+
+            <Label Text="Breeder" TextColor="White"/>
+            <Entry x:Name="BreederEntry" Placeholder="Enter breeder" />
+
+            <Label Text="Date Started" TextColor="White"/>
+            <DatePicker x:Name="StartDatePicker" />
+
+            <Label Text="Plant Count" TextColor="White"/>
+            <Entry x:Name="CountEntry" Keyboard="Numeric" Placeholder="e.g. 1" />
+            <!--Regular, Feminized, or Auto -->
+            <Label Text="Type" TextColor="White"/>
+            <Picker x:Name="TypePicker" Title="Select Type">
+                <Picker.Items>
+                    <x:String>Regular</x:String>
+                    <x:String>Feminized</x:String>
+                    <x:String>Auto</x:String>
+                </Picker.Items>
+            </Picker>
+            <!--Seed or Clone -->
+            <Label Text="Origin" TextColor="White"/>
+            <Picker x:Name="OriginPicker" Title="Seed or Clone">
+                <Picker.Items>
+                    <x:String>Seed</x:String>
+                    <x:String>Clone</x:String>
+                </Picker.Items>
+            </Picker>
+
+            <!-- Spectrum picker sativa/indica -->
+            <Label Text="Spectrum" TextColor="White" />
+            <Picker x:Name="SpectrumPicker" Title="Select Spectrum">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Sativa</x:String>
+                        <x:String>Sativa-Leaning</x:String>
+                        <x:String>Hybrid</x:String>
+                        <x:String>Indica-Leaning</x:String>
+                        <x:String>Indica</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+
+            <Button 
+                Text="Upload Image" 
+                Clicked="OnUploadImageClicked" />
+
+            <Button Text="Save Plant"
+                    Clicked="OnSaveClicked"
+                    BackgroundColor="Green"
+                    TextColor="White"
+                    CornerRadius="10" />
+            <Button 
+                Text="Back" 
+                Clicked="OnBackClicked" 
+                BackgroundColor="Maroon" 
+                TextColor="White" 
+                CornerRadius="10" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

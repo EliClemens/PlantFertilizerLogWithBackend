@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PlantFertilizerLog.Views.MainPage"
+             Title="Plant Tracker"
+             BackgroundColor="Black">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="10" Spacing="30">
+
+            <!-- ✅ Add Plant Button -->
+            <Button Text="Add Plant"
+                    BackgroundColor="Green"
+                    TextColor="White"
+                    Clicked="OnAddPlantClicked"
+                    CornerRadius="10"
+                    HorizontalOptions="Center" />
+
+            <!-- VEG SECTION -->
+            <Label Text="Veg Plants" FontSize="24" TextColor="White" />
+            <CollectionView ItemsSource="{Binding VegPlants}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="Green" BackgroundColor="#1A1A1A" CornerRadius="10" Padding="10" Margin="0,5">
+                            <VerticalStackLayout>
+                                <Label Text="{Binding Name}" FontSize="20" TextColor="White" FontAttributes="Bold"/>
+                                <Label Text="{Binding Breeder}" TextColor="White"/>
+                                <HorizontalStackLayout>
+                                    <Button Text="Add Watering" Clicked="OnAddWateringClicked" CommandParameter="{Binding .}" />
+                                    <Button Text="View" Clicked="OnViewPlantClicked" CommandParameter="{Binding .}" />
+                                    <Button Text="Move to Flower" Clicked="OnMoveStageClicked" CommandParameter="{Binding .}" />
+                                </HorizontalStackLayout>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!-- FLOWER SECTION -->
+            <Label Text="Flower Plants" FontSize="24" TextColor="White" />
+            <CollectionView ItemsSource="{Binding FlowerPlants}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="Orange" BackgroundColor="#1A1A1A" CornerRadius="10" Padding="10" Margin="0,5">
+                            <VerticalStackLayout>
+                                <Label Text="{Binding Name}" FontSize="20" TextColor="White" FontAttributes="Bold"/>
+                                <Label Text="{Binding Breeder}" TextColor="White"/>
+                                <HorizontalStackLayout>
+                                    <Button Text="Add Watering" Clicked="OnAddWateringClicked" CommandParameter="{Binding .}" />
+                                    <Button Text="View" Clicked="OnViewPlantClicked" CommandParameter="{Binding .}" />
+                                    <Button Text="Move to Harvest" Clicked="OnMoveStageClicked" CommandParameter="{Binding .}" />
+                                </HorizontalStackLayout>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!-- HARVEST SECTION -->
+            <Label Text="Harvest" FontSize="24" TextColor="White" />
+            <CollectionView ItemsSource="{Binding HarvestPlants}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="Yellow" BackgroundColor="#1A1A1A" CornerRadius="10" Padding="10" Margin="0,5">
+                            <VerticalStackLayout>
+                                <Label Text="{Binding Name}" FontSize="20" TextColor="White" FontAttributes="Bold"/>
+                                <Label Text="{Binding Breeder}" TextColor="White"/>
+                                <HorizontalStackLayout>
+                                    <Button Text="View" Clicked="OnViewPlantClicked" CommandParameter="{Binding .}" />
+                                    <Button Text="Start Cure" Clicked="OnStartCureClicked" CommandParameter="{Binding .}" />
+                                    <Button Text="Mark Complete" Clicked="OnMarkCompleteClicked" CommandParameter="{Binding .}" />
+                                    <Button Text="Delete" BackgroundColor="DarkRed" TextColor="White" FontAttributes="Bold" CornerRadius="8" Clicked="OnDeletePlantClicked" CommandParameter="{Binding .}" />
+                                </HorizontalStackLayout>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!-- COMPLETE SECTION -->
+            <Label Text="Complete" FontSize="24" TextColor="White" />
+            <CollectionView ItemsSource="{Binding CompletePlants}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="Gray" BackgroundColor="#1A1A1A" CornerRadius="10" Padding="10" Margin="0,5">
+                            <VerticalStackLayout>
+                                <Label Text="{Binding Name}" FontSize="20" TextColor="White" FontAttributes="Bold"/>
+                                <Label Text="{Binding Breeder}" TextColor="White"/>
+                                <Button Text="View" Clicked="OnViewPlantClicked" CommandParameter="{Binding .}" />
+                                <Button Text="Delete" BackgroundColor="DarkRed" TextColor="White" FontAttributes="Bold" CornerRadius="8" Clicked="OnDeletePlantClicked" CommandParameter="{Binding .}" />
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

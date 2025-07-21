@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PlantFertilizerLog.Views.AddWateringPage"
+             Title="Add Watering Entry"
+             BackgroundColor="Black">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <!-- pH -->
+            <Label Text="Water pH" TextColor="White"/>
+            <Entry x:Name="PHEntry" Placeholder="e.g. 6.5" Keyboard="Numeric" />
+
+            <!-- ppm -->
+            <Label Text="PPM" TextColor="White"/>
+            <Entry x:Name="PPMEntry" Placeholder="e.g. 900" Keyboard="Numeric" />
+
+            <!-- tds -->
+            <Label Text="TDS" TextColor="White"/>
+            <Entry x:Name="TDSEntry" Placeholder="e.g. 0.5" Keyboard="Numeric" />
+
+            <!-- Fertilizer list -->
+            <Label Text="Fertilizers" TextColor="White" />
+            <CollectionView x:Name="FertilizerListView" HeightRequest="150">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BackgroundColor="#222" Padding="10">
+                            <VerticalStackLayout>
+                                <Entry Text="{Binding Name}" Placeholder="Fertilizer Name" />
+                                <Entry Text="{Binding NPK}" Placeholder="NPK Ratio (e.g. 10-10-10)" />
+                                <Entry Text="{Binding Amount}" Placeholder="Amount (e.g. 5ml)" />
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!-- Add another fertilizer -->
+            <Button Text="Add Fertilizer" Clicked="OnAddFertilizerClicked" />
+
+            <!-- Upload image -->
+            <Button Text="Upload Image" Clicked="OnUploadImageClicked" />
+
+            <!-- Save -->
+            <Button Text="Save" Clicked="OnSaveClicked" BackgroundColor="Green" TextColor="White" CornerRadius="10" />
+            <Button Text="Back" Clicked="OnBackClicked" BackgroundColor="Maroon" TextColor="White" CornerRadius="10" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
